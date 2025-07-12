@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const userSchema = new Schema(
   {
     _id: {
-      type: String, 
+      type: String,
       required: true,
     },
     displayName: {
@@ -14,10 +14,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    teams: {
-      type: [String], // Array of team names or IDs
-      default: [],
-    },
+    teams: [
+      {
+        type: String,
+        ref: "Team", 
+      }
+    ],
     username: {
       type: String,
       required: true,
@@ -30,7 +32,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      lowercase: true, 
+      lowercase: true,
       trim: true,
     },
     fullName: {
@@ -40,11 +42,11 @@ const userSchema = new Schema(
       index: true,
     },
     avatar: {
-      type: String, // Cloudinary URL
+      type: String,
       required: true,
     },
     coverImage: {
-      type: String, // Cloudinary URL
+      type: String,
     },
     password: {
       type: String,
